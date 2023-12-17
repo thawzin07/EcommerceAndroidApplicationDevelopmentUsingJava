@@ -112,12 +112,13 @@
         app:layout_constraintVertical_bias="0.37" />
 
     <Button
-        android:id="@+id/RegisterButton"
+        android:id="@+id/SignUpButton"
         android:layout_width="109dp"
         android:layout_height="57dp"
         android:background="#8C52FF"
         android:shadowRadius="1"
         android:text="Sign Up"
+        android:onClick="signup"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -128,42 +129,43 @@
 
     <TextView
         android:id="@+id/forgotPasswordHyperlink"
-        android:layout_width="125dp"
-        android:layout_height="30dp"
-        android:text="Forgot Password?"
+        android:layout_width="275dp"
+        android:layout_height="24dp"
+        android:text="We need permissions for the service you use"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914" />
+        app:layout_constraintVertical_bias="0.954" />
 
     <TextView
         android:id="@+id/noAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account?"
+        android:text="Have an account?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
+        app:layout_constraintVertical_bias="0.872" />
 
     <TextView
-        android:id="@+id/signUpHyperlink"
+        android:id="@+id/LogInHyperlink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="Log In"
+        android:onClick="login"
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
+        app:layout_constraintVertical_bias="0.878" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
