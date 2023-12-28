@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "448101683437",
+    "project_id": "adne-steven",
+    "storage_bucket": "adne-steven.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448101683437:android:ebc12eeec540546ac6bce4",
+        "android_client_info": {
+          "package_name": "com.example.ande_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEDP0eIIgsyy3vQDi5SuvVUZtZBw7qbEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
