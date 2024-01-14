@@ -1,8 +1,11 @@
 package com.example.ande_application;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,15 +14,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText username, email, phone, pwd, rpwd;
     private FirebaseAuth auth;
+    private FirebaseFirestore db ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Get FirebaseAuth instance
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance() ;
 
         if(auth.getCurrentUser() != null) {
             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
@@ -86,7 +96,33 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
+
                             Toast.makeText(RegisterActivity.this, "Successfully Sign Up", Toast.LENGTH_SHORT).show();
+
+                            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                            //create user object to store in firestore
+                            User user = new User();
+                            user.setUsername(userName);
+                            user.setUseremail(userEmail);
+                            user.setUserphone(Integer.parseInt(userPhone));
+
+                            db.collection("users")
+                                            .document(firebaseUser.getUid())
+                                                    .set(user)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    Log.d(TAG, "User data added to Firestore successfully!");
+                                                                }
+                                                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error adding user data to Firestore", e);
+                                        }
+                                    });
+
                             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                         } else {
                             Toast.makeText(RegisterActivity.this, "Sign Up Failed" + task.getException(), Toast.LENGTH_SHORT).show();
