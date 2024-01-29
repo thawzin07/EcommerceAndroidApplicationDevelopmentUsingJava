@@ -108,14 +108,14 @@ public class RegisterActivity extends AppCompatActivity {
                             user.setUserphone(Integer.parseInt(userPhone));
 
                             db.collection("users")
-                                            .document(firebaseUser.getUid())
-                                                    .set(user)
-                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                @Override
-                                                                public void onSuccess(Void unused) {
-                                                                    Log.d(TAG, "User data added to Firestore successfully!");
-                                                                }
-                                                            })
+                                    .document(firebaseUser.getUid())
+                                    .set(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Log.d(TAG, "User data added to Firestore successfully!");
+                                        }
+                                    })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
