@@ -1,5 +1,6 @@
 package com.example.ande_application;
 
+
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.example.ande_application.BestSeller;
 import com.example.ande_application.Clothing;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,73 +26,38 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView offerRecyclerView, bestSellerRecyclerView, clothingRecyclerView, bestSellerRecyclerView2;
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /// offer RecyclerView
-        offerRecyclerView = findViewById(R.id.offerRecyclerView);
-        offerRecyclerView.setHasFixedSize(true);
-        offerRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        // Load HomeFragment when activity is created
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new HomeFragment())
+                .commit();
 
-        List<Integer> imageList = new ArrayList<>();
-
-        imageList.add(R.drawable.profile);
-        imageList.add(R.drawable.profile);
-        imageList.add(R.drawable.profile);
-
-        OfferAdapter offerAdapter = new OfferAdapter(imageList);
-
-        offerRecyclerView.setAdapter(offerAdapter);
-
-        // best RecyclerView
-
-        bestSellerRecyclerView = findViewById(R.id.bestSellerRecyclerView);
-        bestSellerRecyclerView.setHasFixedSize(true);
-        bestSellerRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        List<BestSeller> bestSellerList = new ArrayList<>();
-
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
-
-        BestSellerAdapter bestSellerAdapter = new BestSellerAdapter(bestSellerList);
-
-        bestSellerRecyclerView.setAdapter(bestSellerAdapter);
-
-
-        // clothing RecyclerView
-
-        clothingRecyclerView = findViewById(R.id.clothingRecyclerView);
-        clothingRecyclerView.setHasFixedSize(true);
-        clothingRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        List<Clothing> clothingList = new ArrayList<>();
-
-        clothingList.add(new Clothing(R.drawable.storage, "Up to 30% off"));
-        clothingList.add(new Clothing(R.drawable.storage, "Up to 30% off"));
-        clothingList.add(new Clothing(R.drawable.storage, "Up to 30% off"));
-
-        ClothingAdapter clothingAdapter = new ClothingAdapter(clothingList);
-        clothingRecyclerView.setAdapter(clothingAdapter);
-
-        // best RecyclerView 2
-
-        bestSellerRecyclerView2 = findViewById(R.id.bestSeller2RecyclerView);
-        bestSellerRecyclerView2.setHasFixedSize(true);
-        bestSellerRecyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        bestSellerRecyclerView2.setAdapter(bestSellerAdapter);
-
-
+        // Setup bottom navigation
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.NavigationBarItem1:
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, new HomeFragment())
+                            .commit();
+                    return true;
+                case R.id.NavigationBarItem2:
+                    // Replace with your second fragment
+                    return true;
+                case R.id.NavigationBarItem3:
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, new ProfileFragment())
+                            .commit();
+                    return true;
+            }
+            return false;
+        });
     }
-
-
 }

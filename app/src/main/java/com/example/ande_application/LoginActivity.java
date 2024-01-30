@@ -14,10 +14,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText email, pwd ;
+    EditText email, pwd;
     private FirebaseAuth auth;
 
     @Override
@@ -49,13 +50,25 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        auth.signInWithEmailAndPassword(userEmail , userpwd)
+        auth.signInWithEmailAndPassword(userEmail, userpwd)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                            String userId = firebaseUser.getUid();
+
                             Toast.makeText(LoginActivity.this, "Log In Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this , MainActivity.class));
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            // Initialize session manager
+                            SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+                            // Save user ID when logged in
+                            sessionManager.saveUserId(userId);
+
+                            startActivity(intent);
+
                         } else {
                             Toast.makeText(LoginActivity.this, "Log In Failed" + task.getException(), Toast.LENGTH_SHORT).show();
                         }
@@ -65,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void signup(View view) {
-        startActivity(new Intent(LoginActivity.this , RegisterActivity.class));
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
     }
 
 }
