@@ -1,7 +1,7 @@
 package com.example.ande_application;
 
 public class User {
-    private String username , useremail , imageUrl;
+    private String username , useremail , userimageurl;
     private int userphone ;
 
     public String getUsername() {
@@ -16,17 +16,19 @@ public class User {
         return userphone;
     }
 
+    public String getUserimageurl() {
+        return userimageurl;
+    }
+
+    public void setUserimageurl(String userimageurl) {
+        this.userimageurl = userimageurl;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
 
     public void setUserphone(int userphone) {
         this.userphone = userphone;

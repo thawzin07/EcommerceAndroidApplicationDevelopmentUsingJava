@@ -38,8 +38,13 @@
         </activity>
         <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".ProfileActivity">
+        <activity android:name=".HomeFragment">
         </activity>
+        <activity android:name=".ProfileFragment">
+        </activity>
+        <activity android:name=".OneItemActivity" />
+        <activity android:name=".PaymentActivity" />
+
     </application>
 
 </manifest>

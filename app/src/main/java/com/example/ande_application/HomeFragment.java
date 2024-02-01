@@ -1,26 +1,32 @@
 package com.example.ande_application;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.ande_application.BestSeller;
-import com.example.ande_application.BestSellerAdapter;
-import com.example.ande_application.Clothing;
-import com.example.ande_application.ClothingAdapter;
-import com.example.ande_application.OfferAdapter;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView offerRecyclerView, bestSellerRecyclerView, clothingRecyclerView, bestSellerRecyclerView2;
+    private RecyclerView offerRecyclerView, bestSellerRecyclerView, clothingRecyclerView,
+            bestSellerRecyclerView2 , specialOfferRecyclerView;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -38,9 +44,12 @@ public class HomeFragment extends Fragment {
         bestSellerRecyclerView = view.findViewById(R.id.bestSellerRecyclerView);
         clothingRecyclerView = view.findViewById(R.id.clothingRecyclerView);
         bestSellerRecyclerView2 = view.findViewById(R.id.bestSeller2RecyclerView);
+        specialOfferRecyclerView = view.findViewById(R.id.specialOfferRecyclerView);
 
         // Setup offerRecyclerView
         setupOfferRecyclerView();
+
+        fetchBestSellers();
 
         // Setup bestSellerRecyclerView
         setupBestSellerRecyclerView();
@@ -53,6 +62,57 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
+    //fetch best seller data from Firestore
+    //fetch best seller data from Firestore
+    private void fetchBestSellers() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("special_offers")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<SpecialOffer> specialOfferList = new ArrayList<>();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String imageUrl = document.getString("imageUrl");
+                            String offerText = document.getString("offerText");
+                            Double price = document.getDouble("price");
+                            specialOfferList.add(new SpecialOffer(imageUrl, offerText , price));
+                        }
+
+                        // Log the specialOfferList
+                        Log.d(TAG, "Special Offer List: " + specialOfferList.toString());
+
+                        // Set the layout manager
+                        specialOfferRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+                        // Pass the list of best sellers, context, and listener to your adapter
+                        SpecialOfferAdapter adapter = new SpecialOfferAdapter(requireContext(), specialOfferList, new SpecialOfferAdapter.OnSpecialOfferClickListener() {
+                            @Override
+                            public void onSpecialOfferClicked(SpecialOffer specialOffer) {
+                                // Start OneItemActivity when special offer is clicked
+                                Intent intent = new Intent(requireContext(), OneItemActivity.class);
+                                // Pass special offer data to OneItemActivity using intent extras
+                                intent.putExtra("imageUrl", specialOffer.getImageUrl());
+                                intent.putExtra("offerText", specialOffer.getOfferText());
+                                intent.putExtra("price" , specialOffer.getPrice());
+                                startActivity(intent);
+                            }
+                        });
+                        specialOfferRecyclerView.setAdapter(adapter);
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+    }
+
+
+
+    public void onSpecialOfferImageClick(View view) {
+        // Start OneItemActivity when ImageView is clicked
+        startActivity(new Intent(requireContext(), OneItemActivity.class));
+    }
+
+
 
     private void setupOfferRecyclerView() {
         offerRecyclerView.setHasFixedSize(true);

@@ -23,8 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Upload New Photo"
-        android:onClick="onClickUploadPhoto" />
-
+        android:onClick="openFileChooserAndUpload" />
 
     <!-- Label and TextView for Username -->
     <TextView
@@ -88,5 +87,25 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:textSize="16sp" />
+
+    <!-- Button to Log Out -->
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Log Out" />
+
+    <!-- Button to Delete Account -->
+    <Button
+        android:id="@+id/deleteAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoutButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Delete Account" />
 
 </RelativeLayout>

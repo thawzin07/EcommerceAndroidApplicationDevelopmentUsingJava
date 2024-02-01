@@ -27,5 +27,11 @@ public class SessionManager {
     public String getUserId() {
         return sharedPreferences.getString(KEY_USER_ID, null);
     }
+
+    public void clearUserId() {
+        editor.remove(KEY_USER_ID);
+        editor.apply();
+    }
+
 }
 

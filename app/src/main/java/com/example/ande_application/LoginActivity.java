@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         pwd = findViewById(R.id.pwd);
+
     }
 
     public void login(View view) {

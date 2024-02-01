@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Firebase;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,6 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
         String userPhone = phone.getText().toString();
         String userpwd = pwd.getText().toString();
         String userrpwd = rpwd.getText().toString();
+
+        String userimageurl = "https://firebasestorage.googleapis.com/v0/b/adne-steven.appspot.com/o/profileImages%2Fdefaultprofile.jpeg?alt=media&token=955ba03c-4bdb-4d23-bc1e-ce6dfebfcedb";
 
         if (TextUtils.isEmpty(userName)) {
             Toast.makeText(this, "Enter Name!", Toast.LENGTH_SHORT).show();
@@ -101,11 +101,20 @@ public class RegisterActivity extends AppCompatActivity {
 
                             FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+                            String userId = firebaseUser.getUid();
+
+                            SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+                            // Save user ID when logged in
+                            sessionManager.saveUserId(userId);
+
                             //create user object to store in firestore
                             User user = new User();
                             user.setUsername(userName);
                             user.setUseremail(userEmail);
                             user.setUserphone(Integer.parseInt(userPhone));
+                            user.setUserimageurl(userimageurl);
+
 
                             db.collection("users")
                                     .document(firebaseUser.getUid())
