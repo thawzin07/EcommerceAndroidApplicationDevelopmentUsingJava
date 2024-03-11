@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
@@ -119,9 +120,9 @@ public class HomeFragment extends Fragment {
         offerRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         List<Integer> imageList = new ArrayList<>();
-        imageList.add(R.drawable.profile);
-        imageList.add(R.drawable.profile);
-        imageList.add(R.drawable.profile);
+        imageList.add(R.drawable.camera);
+        imageList.add(R.drawable.phone);
+        imageList.add(R.drawable.headphone);
 
         OfferAdapter offerAdapter = new OfferAdapter(imageList);
         offerRecyclerView.setAdapter(offerAdapter);
@@ -132,9 +133,9 @@ public class HomeFragment extends Fragment {
         bestSellerRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         List<BestSeller> bestSellerList = new ArrayList<>();
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
+        bestSellerList.add(new BestSeller(R.drawable.food1, "Cash back 40%"));
+        bestSellerList.add(new BestSeller(R.drawable.food2, "Up to 25% off"));
+        bestSellerList.add(new BestSeller(R.drawable.shirt1, "Up to 15% off"));
 
         BestSellerAdapter bestSellerAdapter = new BestSellerAdapter(bestSellerList);
         bestSellerRecyclerView.setAdapter(bestSellerAdapter);
@@ -146,8 +147,8 @@ public class HomeFragment extends Fragment {
 
         List<Clothing> clothingList = new ArrayList<>();
         clothingList.add(new Clothing(R.drawable.storage, "Up to 30% off"));
-        clothingList.add(new Clothing(R.drawable.storage, "Up to 30% off"));
-        clothingList.add(new Clothing(R.drawable.storage, "Up to 30% off"));
+        clothingList.add(new Clothing(R.drawable.woodenbox, "Up to 40% off"));
+        clothingList.add(new Clothing(R.drawable.shirt2, "Up to 30% off"));
 
         ClothingAdapter clothingAdapter = new ClothingAdapter(clothingList);
         clothingRecyclerView.setAdapter(clothingAdapter);
@@ -158,9 +159,9 @@ public class HomeFragment extends Fragment {
         bestSellerRecyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         List<BestSeller> bestSellerList = new ArrayList<>();
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
-        bestSellerList.add(new BestSeller(R.drawable.cart, "Up to 20% off"));
+        bestSellerList.add(new BestSeller(R.drawable.food2, "Up to 50% off"));
+        bestSellerList.add(new BestSeller(R.drawable.headphone, "Cash back 22%"));
+        bestSellerList.add(new BestSeller(R.drawable.shirt1, "Buy one get one"));
 
         BestSellerAdapter bestSellerAdapter = new BestSellerAdapter(bestSellerList);
         bestSellerRecyclerView2.setAdapter(bestSellerAdapter);

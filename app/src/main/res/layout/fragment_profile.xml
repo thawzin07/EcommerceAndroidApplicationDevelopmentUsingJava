@@ -1,37 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ProfileFragment">
 
-    <!-- Image View to display the profile picture -->
     <ImageView
         android:id="@+id/profileImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/profile"
+        android:layout_width="386dp"
+        android:layout_height="259dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:adjustViewBounds="true" />
+        android:src="@drawable/profile" />
 
-    <!-- Button to upload a new profile photo -->
     <Button
         android:id="@+id/uploadPhotoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/profileImageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
         android:text="Upload New Photo"
-        android:onClick="openFileChooserAndUpload" />
+        android:onClick="openFileChooserAndUpload"
+        android:textColor="@android:color/white"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
 
-    <!-- Label and TextView for Username -->
     <TextView
         android:id="@+id/userNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/uploadPhotoButton"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Username"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -43,10 +45,9 @@
         android:layout_toEndOf="@id/userNameLabel"
         android:layout_below="@id/uploadPhotoButton"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:textSize="16sp" />
 
-    <!-- Label and TextView for Email -->
     <TextView
         android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
@@ -67,7 +68,6 @@
         android:layout_marginTop="16dp"
         android:textSize="16sp" />
 
-    <!-- Label and TextView for Phone Number -->
     <TextView
         android:id="@+id/phoneLabel"
         android:layout_width="wrap_content"
@@ -88,17 +88,54 @@
         android:layout_marginTop="16dp"
         android:textSize="16sp" />
 
-    <!-- Button to Log Out -->
+    <TextView
+        android:id="@+id/addressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneTextView"
+        android:layout_marginTop="16dp"
+        android:text="Address"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/addressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/addressLabel"
+        android:layout_below="@id/phoneTextView"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/chooseAddressButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addressTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Choose Address"
+        android:textColor="@android:color/white"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
+
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/phoneTextView"
+        android:layout_below="@id/chooseAddressButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:text="Log Out" />
+        android:text="Log Out"
+        android:textColor="@android:color/white"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
 
-    <!-- Button to Delete Account -->
     <Button
         android:id="@+id/deleteAccountButton"
         android:layout_width="wrap_content"
@@ -106,6 +143,10 @@
         android:layout_below="@id/logoutButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Delete Account" />
-
+        android:text="Delete Account"
+        android:textColor="@android:color/white"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
 </RelativeLayout>

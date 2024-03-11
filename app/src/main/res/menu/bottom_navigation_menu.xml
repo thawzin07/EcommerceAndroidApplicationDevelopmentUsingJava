@@ -2,36 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/NavigationBarItem1"
-        android:icon="@drawable/home"
+        android:icon="@drawable/ic_navigationitem1_foreground"
         android:title="Home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:scaleType="fitCenter"
         />
 
     <item
         android:id="@+id/NavigationBarItem2"
-        android:icon="@drawable/cart"
+        android:icon="@drawable/cart2"
         android:title="Cart"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:background="?android:attr/selectableItemBackground"
-        android:scaleType="centerInside"
-    />
+
+        android:scaleType="fitCenter"
+        />
     <item
         android:id="@+id/NavigationBarItem3"
-        android:icon="@drawable/profile"
+        android:icon="@drawable/me_foreground"
         android:title="Me"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:background="?android:attr/selectableItemBackground"
-        android:scaleType="centerInside"
-    />
+
+        android:scaleType="fitCenter"
+        />
 </menu>

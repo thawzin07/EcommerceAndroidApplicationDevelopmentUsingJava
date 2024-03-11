@@ -2,6 +2,7 @@ package com.example.ande_application;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -112,6 +113,12 @@ public class ProfileFragment extends Fragment {
                 builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked Logout button
+                        // Clear SharedPreferences
+                        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CartData", requireContext().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
+
                         FirebaseAuth.getInstance().signOut();
                         // Navigate to the login screen
                         Intent intent = new Intent(requireContext(), LoginActivity.class);
@@ -131,6 +138,7 @@ public class ProfileFragment extends Fragment {
                 dialog.show();
             }
         });
+
         // Attempt to delete Account
         //Button deleteAccountButton = view.findViewById(R.id.deleteAccountButton);
         //deleteAccountButton.setOnClickListener(new View.OnClickListener() {
